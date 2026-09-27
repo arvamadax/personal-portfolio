@@ -1,0 +1,36 @@
+# API Planner untuk portfolio.codewithus.me/planner: instance KEDUA dari server/api.js milik repo web-faya
+# (kode yang sama dengan Study Buddy Faya, config & data terpisah, port 8162).
+#
+#   sudo install -d -m 700 -o arvamadax /etc/study-buddy-arva
+#   sudo cp deploy/api-planner.config.example.json /etc/study-buddy-arva/config.json   # lalu isi
+#   sudo cp deploy/api-planner.service /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now api-planner
+#
+#   journalctl -u api-planner -f
+#   curl -s localhost:8162/api/status
+
+[Unit]
+Description=Portfolio planner (portfolio.codewithus.me) - API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=arvamadax
+WorkingDirectory=/home/arvamadax/webformygf/server
+ExecStart=/usr/bin/node api.js
+Restart=always
+RestartSec=3
+Environment=SB_PORT=8162
+Environment=SB_CONFIG=/etc/study-buddy-arva/config.json
+Environment=SB_DATA=/var/lib/study-buddy-arva/data.json
+Environment=TZ=Asia/Jakarta
+StateDirectory=study-buddy-arva
+StateDirectoryMode=0700
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

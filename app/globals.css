@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+/* Token "Datasheet": netral dingin + satu aksen kobalt. Tema: sistem, bisa dipaksa lewat
+   <html data-theme="light|dark">. Satu skala sudut: --radius-ui (4px) untuk semua. */
+:root {
+  --bg: #f6f6f4;
+  --surface: #fcfcfb;
+  --ink: #131416;
+  --muted: #5b5e63;
+  --line: #dcddda;
+  --accent: #2447c9;
+  --on-accent: #f7f8ff;
+  /* kode & kit (hanya di Lab) */
+  --danger: #b3261e;
+  --code-str: #1f7a4d;
+  --code-num: #9a4b0c;
+  --led: #e0442e;
+  --lcd-bg: #9fb86a;
+  --lcd-ink: #1d2a10;
+  --term-bg: #16181c;
+  --term-ink: #dfe3e8;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1012;
+    --surface: #16171a;
+    --ink: #e8e9eb;
+    --muted: #9a9ea5;
+    --line: #2a2c31;
+    --accent: #8aa2ff;
+    --on-accent: #0b1233;
+    --danger: #ff8e82;
+    --code-str: #7fd4a0;
+    --code-num: #f0b27a;
+    --led: #ff6a52;
+    --lcd-bg: #7f9a4c;
+    --lcd-ink: #142008;
+    --term-bg: #0a0b0d;
+    --term-ink: #dfe3e8;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1012;
+  --surface: #16171a;
+  --ink: #e8e9eb;
+  --muted: #9a9ea5;
+  --line: #2a2c31;
+  --accent: #8aa2ff;
+  --on-accent: #0b1233;
+  --danger: #ff8e82;
+  --code-str: #7fd4a0;
+  --code-num: #f0b27a;
+  --led: #ff6a52;
+  --lcd-bg: #7f9a4c;
+  --lcd-ink: #142008;
+  --term-bg: #0a0b0d;
+  --term-ink: #dfe3e8;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --radius-ui: 4px;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+

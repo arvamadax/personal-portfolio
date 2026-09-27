@@ -1,0 +1,19 @@
+{
+  "port": 8162,
+  "adminSandi": "",
+  "akun": [
+    {
+      "id": "ub",
+      "label": "UB",
+      "email": "EMAIL_UB_KAMU@student.ub.ac.id",
+      "warna": "teal",
+      "gasUrl": "https://script.google.com/macros/s/XXXX/exec",
+      "rahasia": "teks-acak-panjang-yang-sama-dengan-RAHASIA-di-Kode.gs"
+    }
+  ],
+  "akunKuliah": "ub",
+  "brone": {
+    "icalUrl": "https://brone.ub.ac.id/calendar/export_execute.php?userid=…&authtoken=…&preset_what=all&preset_time=recentupcoming",
+    "wsToken": ""
+  }
+}

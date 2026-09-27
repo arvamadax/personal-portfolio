@@ -1,0 +1,63 @@
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+::selection { background: var(--accent); color: var(--on-accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---- Motion. Tiap animasi punya alasan:
+   .page    halaman baru masuk (transisi antar-tab: memberi tahu isi sudah berganti)
+   .rise    elemen di halaman masuk berurutan (hierarki: judul → isi → aksi), --i = urutan
+   .spot    sorotan mengikuti pointer di kartu (umpan balik hover)
+   .wipe    foto hero terbuka dari bawah (satu momen fokus di halaman depan)
+   Indikator tab, terminal, LED kit: transisi keadaan. */
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes page { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes wipe { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes pop { from { opacity: 0; transform: translateY(-6px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes caret { 50% { opacity: 0; } }
+
+.page { animation: page 0.5s var(--ease-out-expo) both; }
+.rise { animation: rise 0.8s var(--ease-out-expo) both; animation-delay: calc(var(--i, 0) * 80ms + 60ms); }
+.wipe { animation: wipe 1.1s var(--ease-out-expo) 0.2s both; }
+.pop { animation: pop 0.22s var(--ease-out-expo) both; }
+.caret { animation: caret 1s steps(1) infinite; }
+
+.spot { position: relative; isolation: isolate; }
+.spot::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none; opacity: 0;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent) 12%, transparent), transparent 65%);
+  transition: opacity 0.3s;
+}
+.spot:hover::before { opacity: 1; }
+.lift { transition: transform 0.35s var(--ease-out-expo), border-color 0.2s; }
+.lift:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--ink) 30%, var(--line)); }
+
+/* ---- Warna bilah Blinds: monokrom grafit. Diturunkan dari --ink ke arah --bg,
+   jadi di mode gelap otomatis menjadi abu terang. */
+:root {
+  --blind-0: var(--ink);
+  --blind-1: color-mix(in srgb, var(--ink) 86%, var(--bg));
+  --blind-2: color-mix(in srgb, var(--ink) 72%, var(--bg));
+  --blind-3: color-mix(in srgb, var(--ink) 93%, var(--bg));
+}
+
+/* ---- Kurangi animasi.
+   data-motion="reduce" = dipaksa mati; data-motion="full" = dipaksa hidup walau OS minta reduce;
+   tanpa atribut = ikut OS. */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) *, :root:not([data-motion="full"]) ::before, :root:not([data-motion="full"]) ::after {
+    animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; animation-delay: 0s !important; transition-duration: 0.01ms !important;
+  }
+  :root:not([data-motion="full"]) { scroll-behavior: auto; }
+}
+:root[data-motion="reduce"] *, :root[data-motion="reduce"] ::before, :root[data-motion="reduce"] ::after {
+  animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; animation-delay: 0s !important; transition-duration: 0.01ms !important;
+}
+:root[data-motion="reduce"] { scroll-behavior: auto; }
+
+/* Pola titik untuk kartu tanpa gambar (grid breadboard). */
+.dots { background-image: radial-gradient(color-mix(in srgb, var(--ink) 14%, transparent) 1px, transparent 1px); background-size: 14px 14px; }
+
+/* ---- Kit DT-COMBO */
+.led { width: 1.1rem; height: 1.1rem; border-radius: 999px; background: color-mix(in srgb, var(--led) 18%, var(--line)); transition: background-color 0.12s, box-shadow 0.12s; }
+.led[data-on="true"] { background: var(--led); box-shadow: 0 0 0 3px color-mix(in srgb, var(--led) 25%, transparent); }
+.lcd { background: var(--lcd-bg); color: var(--lcd-ink); font-family: var(--font-geist-mono), monospace; letter-spacing: 0.18em; line-height: 1.35; white-space: pre; }

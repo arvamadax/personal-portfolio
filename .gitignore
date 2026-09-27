@@ -1,0 +1,22 @@
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Build
+node_modules/
+.next/
+out/
+next-env.d.ts
+tsconfig.tsbuildinfo
+
+# Dibuat scripts/github.mjs
+public/data/

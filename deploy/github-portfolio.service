@@ -1,0 +1,26 @@
+# Perbarui data GitHub portofolio (/data/github.json) tanpa build ulang situs.
+# Dijalankan harian oleh github-portfolio.timer.
+#
+#   sudo cp deploy/github-portfolio.service deploy/github-portfolio.timer /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now github-portfolio.timer
+#   sudo systemctl start github-portfolio      # jalankan sekarang juga
+#   journalctl -u github-portfolio             # hasil: "github.json: 7 repo, 10 commit, …"
+#
+# Opsional: token GitHub tanpa scope (batas API lebih longgar) di /etc/github-portfolio.env:
+#   GITHUB_TOKEN=github_pat_…
+
+[Unit]
+Description=Portfolio GitHub data refresh
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=arvamadax
+WorkingDirectory=/home/arvamadax/portfolio
+EnvironmentFile=-/etc/github-portfolio.env
+ExecStart=/usr/bin/node scripts/github.mjs /var/www/portfolio/data/github.json
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/var/www/portfolio/data
