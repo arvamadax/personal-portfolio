@@ -29,6 +29,11 @@ export type ArchiveEntry = { href: string; date: `${number}-${number}`; tags: st
 
 export const ARCHIVE: ArchiveEntry[] = [
   {
+    href: "/archive/menagih-janji-negara", date: "2026-10", tags: ["Kewarganegaraan", "UUD 1945", "Presentation"],
+    en: { title: "Collecting the State's Promises", summary: "Civics presentation (in Indonesian): seven public-criticism hashtag movements from 2019 to 2025, read through the rule of law. Arrow keys to move, F for fullscreen." },
+    id: { title: "Menagih Janji Negara", summary: "Presentasi Kewarganegaraan: tujuh fenomena tagar kritik publik 2019–2025 dibaca lewat Negara Hukum Pancasila. Tombol panah untuk pindah, F untuk layar penuh." },
+  },
+  {
     href: "/archive/lotka-volterra", date: "2026-09", tags: ["Lotka–Volterra", "RK4", "Canvas"],
     en: { title: "Rabbits and Wolves", summary: "Non-linear predator–prey model next to its linearisation, animated side by side from the same starting point." },
     id: { title: "Kelinci dan Serigala", summary: "Model mangsa-pemangsa non-linear berdampingan dengan linearisasinya, dianimasikan dari kondisi awal yang sama." },
