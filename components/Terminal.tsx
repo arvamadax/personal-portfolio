@@ -1,6 +1,7 @@
 "use client";
 // Terminal kecil di atas halaman. Dibuka tombol >_ di nav atau Ctrl + `.
-// Perintah publik untuk pengunjung; `planner` (tidak tercantum di help) membuka tab baru ke /planner.
+// Perintah publik untuk pengunjung; `planner` (tidak tercantum di help) membuka tab baru ke /planner,
+// `archive` (juga tersembunyi) pindah ke /archive (daftar isi tugas & eksperimen).
 // Terminal ini hanya PINTU, bukan pengaman: /planner dan /api dijaga PIN nginx + Cloudflare Access.
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -84,6 +85,7 @@ export function Terminal() {
       // pintu pribadi (tidak ada di help)
       case "planner": return openTab("/planner", "planner");
       case "jadwal": return openTab("/planner#jadwal", "jadwal");
+      case "archive": return go("/archive");
       case "sudo": return out("nice try.", "err");
       default: return out(t.term.notFound(cmd), "err");
     }

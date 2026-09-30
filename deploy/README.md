@@ -62,6 +62,7 @@ Menarik kode terbaru, build (termasuk data GitHub), lalu menyalin `out/` ke `/va
 
 - Terminal di situs punya perintah `planner` (tidak tercantum di `help`) yang membuka `/planner` di tab baru.
   Yang menjaga tetap nginx (PIN) + Cloudflare Access, bukan terminal.
+- Perintah tersembunyi lain: `archive` membuka `/archive`, daftar isi tugas & eksperimen (entri di `ARCHIVE`, `lib/content.ts`; HTML interaktif ditolak build, harus di-porting). Halaman publik biasa, tanpa PIN.
 - HTML dikirim dengan `Cache-Control: no-cache`, jadi deploy baru langsung terlihat. Aset `/_next/static/` di-cache 1 tahun.
 - Lokal: `SB_PORT=8162 node ../web-faya/server/api.js --contoh` untuk planner dengan data contoh; `npm run dev`
   meneruskan `/api/*` ke port 8162.

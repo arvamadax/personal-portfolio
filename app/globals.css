@@ -19,6 +19,8 @@
   --lcd-ink: #1d2a10;
   --term-bg: #16181c;
   --term-ink: #dfe3e8;
+  /* warna data kedua (serigala di /archive); mangsa = --accent */
+  --pred: #c0561f;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -38,6 +40,7 @@
     --lcd-ink: #142008;
     --term-bg: #0a0b0d;
     --term-ink: #dfe3e8;
+    --pred: #f0935c;
     color-scheme: dark;
   }
 }
@@ -57,6 +60,7 @@
   --lcd-ink: #142008;
   --term-bg: #0a0b0d;
   --term-ink: #dfe3e8;
+  --pred: #f0935c;
   color-scheme: dark;
 }
 
