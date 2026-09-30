@@ -23,7 +23,7 @@ export const WORK_BASE = [
 
 // Isi /archive, terbaru di atas. Satu tugas = satu blok; tempel blok baru di paling atas daftar.
 // href "/..." = halaman di situs ini atau file di public/ (PDF, gambar); "https://..." = tautan luar, dibuka di tab baru.
-// HTML interaktif TIDAK bisa langsung dimasukkan (ditolak di bawah dan di next.config.ts): minta Claude mem-porting-nya.
+// HTML interaktif TIDAK bisa langsung dimasukkan (ditolak di bawah dan di next.config.ts): harus di-porting ke komponen dulu.
 type Text = { title: string; summary: string };
 export type ArchiveEntry = { href: string; date: `${number}-${number}`; tags: string[]; en: Text; id: Text };
 
